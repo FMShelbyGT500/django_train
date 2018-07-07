@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {% if choice_quest_ls %}
+        {% for choice in choice_quest_ls %}
+            <ul>
+                <li  type="circle"> {{ choice.choice_text }} </li>
+            </ul>
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>
+
