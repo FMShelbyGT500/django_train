@@ -28,7 +28,8 @@ DEBUG = True
 
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['127.0.0.1', 'polls-world-cup.herokuapp.com', 'blog-start-django.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'blog-start-django.com.herokudns.com']
+# ALLOWED_HOSTS = ['127.0.0.1', 'django-learning-polls-blog.herokuapp.com', 'blog-start-django.com']
 
 
 # Application definition
