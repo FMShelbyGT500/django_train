@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+div.navmenu {
+    width: 100%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+div.navmenu li a {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px 10px 5px;
+    background-color: #ffffff;
+}
+
+div.navmenu a:hover {    
+    padding: 5px 10px 5px;
+    background-color: #ffffff;
+}
+
+div.navmenu .menu {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;    
+    overflow: hidden;
+    border: 0;
+}
+
+div.navmenu {
+    float: left;
+}
+
