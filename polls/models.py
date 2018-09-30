@@ -25,10 +25,11 @@ class Choice(models.Model):
 
 class Another(models.Model):
     foreign_empty = models.ForeignKey(Question, on_delete=models.CASCADE)
+    name_field = models.CharField(max_length=100, default='')
     char_field_empty = models.CharField(max_length=500)
     integer_empty = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.char_field_empty
+        return self.name_field
 
 

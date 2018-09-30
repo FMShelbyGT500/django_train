@@ -2,15 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Results</title>
 </head>
 <body>
 
-    {% if choice_quest_ls %}
-        {% for choice in choice_quest_ls %}
+    <h1>Results</h1>
+    {% if question.choice_set.all %}
+        {% for choice in question.choice_set.all %}
             <ul>
-                <li  type="circle"> {{ choice.choice_text }} </li>
+                <li  type="circle"> {{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }} </li>
             </ul>
+        {% endfor %}
+        <p><a href="{% url 'polls:detail' question.id %}">Vote again </a></p>
+    {% endif %}
+
+    <br/>
+    <h2>Comments</h2>
+    {% if question.another_set.all %}
+        {% for com in question.another_set.all %}
+            {% if com %}
+                <p>{{ com.name_field }}</p>
+                <p>{{nbsp.8}}{{ com.char_field_empty }}</p><br />
+            {% endif %}
         {% endfor %}
     {% endif %}
 

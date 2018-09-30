@@ -27,7 +27,8 @@ SECRET_KEY = '$@^2@dsy1qd$)&=!t+n2pm*pr)f@0&p9k-%7a&rwn47+#qvzq5'
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'polls-world-cup.herokuapp.com']
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['127.0.0.1', 'polls-world-cup.herokuapp.com']
 
 
 # Application definition
@@ -40,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'polls.apps.PollsConfig'
+    'polls.apps.PollsConfig',
+    'blog.apps.BlogConfig'
 ]
 
 MIDDLEWARE = [
@@ -80,8 +82,15 @@ WSGI_APPLICATION = 'DjangoBegin.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'heroku_ngnzqw6h',
+        'HOST': 'ds115553.mlab.com',
+        'PORT': 15553,
+        'USER': 'adm',
+        'PASSWORD': 'a113322',
+        'AUTH_SOURCE': 'heroku_ngnzqw6h',
+        'ENFORCE_SCHEMA': True,
+        'AUTH_MECHANISM': 'SCRAM-SHA-1',
     }
 }
 
@@ -124,6 +133,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/static/',
+]
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
