@@ -1,0 +1,18 @@
+{% extends "blog/BaseBlog.html" %}
+{% block acttags %}
+    active
+{% endblock acttags %}
+
+{% block title %}
+    Tags
+{% endblock title %}
+
+{% block content %}
+    
+    <h1>Tags</h1>
+
+    {% for tag in tags %}
+        <a href="{{ tag.get_absolute_url }}" class="btn btn-primary bgcor">{{ tag }}</a>
+    {% endfor %}
+
+{% endblock content %}

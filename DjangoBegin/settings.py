@@ -27,9 +27,9 @@ SECRET_KEY = '$@^2@dsy1qd$)&=!t+n2pm*pr)f@0&p9k-%7a&rwn47+#qvzq5'
 DEBUG = True
 
 
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = ['127.0.0.1', 'blog-start-django.com.herokudns.com']
-ALLOWED_HOSTS = ['127.0.0.1', 'django-learning-polls-blog.herokuapp.com']
+# ALLOWED_HOSTS = ['127.0.0.1', 'django-learning-polls-blog.herokuapp.com']
 
 
 # Application definition
