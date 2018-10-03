@@ -1,7 +1,7 @@
 <div class="card" style="margin-bottom: 15px;">
     <h6 class="card-header">{{ post.pub_date }}</h6>
     <div class="card-body">
-        <h4 class="card-title">{{ post.title }}</h4>
+        <h3 class="card-title">{{ post.title }}</h3>
         <p class="card-text">{{ post.body|truncatewords:10 }}</p>
         <a href="{{ post.get_absolute_url }}" class="btn btn-primary">More</a>
     </div>
