@@ -37,7 +37,7 @@ class TagForm(forms.ModelForm):
         
         if cln_slug == 'create':
             raise ValidationError('can`t be that')
-        if Tag.objects.filter(slug__iexact=cln_slug).count():
+        if Tag.objects.filter(slug__iexact=cln_slug):
             raise ValidationError(f'"{cln_slug}" slug already exist')
 
         return cln_slug    
@@ -49,3 +49,44 @@ class TagForm(forms.ModelForm):
     #     )
 
         # return new_tag
+
+    
+class PostForm(forms.ModelForm):
+
+    class Meta:
+        model = Post
+        fields = ['title', 'slug', 'body', 'tags']
+
+        widgets = {
+
+            "title": forms.TextInput(attrs={
+                "class": "form-control dont-move",
+                "placeholder": "enter the title"
+            }),
+
+            "slug": forms.TextInput(attrs={
+                "class": "form-control dont-move",
+                "placeholder": "Enter the slug"
+            }),
+
+            "body": forms.Textarea(attrs={
+                "class": "form-control pretty-move-inp"
+            }),
+
+            "tags": forms.SelectMultiple(attrs={
+                "class": "form-control mb-2 dont-move",
+                "size": "8"
+            })
+
+        }
+
+    
+    def clean_slug(self):
+        cln_slug = self.cleaned_data['slug']
+
+        if Post.objects.filter(slug__iexact=cln_slug):
+            raise ValidationError("current slug already exist")
+        if cln_slug == "create":
+            raise ValidationError("you cannot name a slug as 'create'")
+
+        return cln_slug
