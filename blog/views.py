@@ -28,8 +28,9 @@ class TagDetail(ObjectDetailMixin, View):
 
 class TagCreate(View):
     
-    def get(self, request):
+    def get(self, request):        
         form = TagForm()
+        print(form)
         return render(request, 'blog/tag_create.html', context={'form': form})
 
     def post(self, request):
