@@ -33,7 +33,7 @@ class TagForm(forms.ModelForm):
         }
 
     def clean_slug(self):
-        cln_slug = self.cleaned_data["slug"]
+        cln_slug = self.cleaned_data["slug"].lower()
         
         if cln_slug == 'create':
             raise ValidationError('can`t be that')
@@ -57,24 +57,26 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title', 'slug', 'body', 'tags']
 
+
         widgets = {
 
             "title": forms.TextInput(attrs={
-                "class": "form-control dont-move",
+                "class": "form-control",
                 "placeholder": "enter the title"
             }),
 
             "slug": forms.TextInput(attrs={
-                "class": "form-control dont-move",
+                "class": "form-control",
                 "placeholder": "Enter the slug"
             }),
 
             "body": forms.Textarea(attrs={
-                "class": "form-control pretty-move-inp"
+                "class": "form-control pretty-move-inp",
+                "style": "height:150px"
             }),
 
             "tags": forms.SelectMultiple(attrs={
-                "class": "form-control mb-2 dont-move",
+                "class": "form-control mb-2",
                 "size": "8"
             })
 
@@ -82,7 +84,7 @@ class PostForm(forms.ModelForm):
 
     
     def clean_slug(self):
-        cln_slug = self.cleaned_data['slug']
+        cln_slug = self.cleaned_data['slug'].lower()
 
         if Post.objects.filter(slug__iexact=cln_slug):
             raise ValidationError("current slug already exist")
