@@ -3,6 +3,7 @@ from django.shortcuts import reverse
 from django.utils.text import slugify
 from time import time
 
+
 def generate_slug(s):
     return slugify(s, allow_unicode=True) + '-' + str(int(time()))
 

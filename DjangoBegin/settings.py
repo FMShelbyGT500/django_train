@@ -62,6 +62,7 @@ ROOT_URLCONF = 'DjangoBegin.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # Adding path to diretory with base templates
         'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,

@@ -5,6 +5,4 @@ venv/
 db.sqlite3
 /static
 .DS_Store
-launch.json
-settings.json
-last.sql
+.vscode/
