@@ -1,0 +1,9 @@
+{% for field in form %}
+  <div class="form-group">      
+    <h4>{{ field.label }}</h4>
+    {{ field }}
+    {% if field.errors %}
+      <div class="alert alert-danger mt-2">{{ field.errors }}</div>            
+    {% endif %}
+  </div>
+{% endfor %}
