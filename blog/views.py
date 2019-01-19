@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 # from django.http import HttpResponse
 from .models import Post, Tag
 from django.views.generic import View
-from .utils import ObjectListMixin, ObjectDetailMixin, ObjectCreateMixin
+from .utils import *
 from .forms import *
 
 
@@ -27,18 +27,6 @@ class TagDetail(ObjectDetailMixin, View):
 
 
 class TagCreate(ObjectCreateMixin, View):
-    
-    # def get(self, request):        
-    #     form = TagForm()
-    #     return render(request, 'blog/tag_create.html', context={'form': form})
-
-    # def post(self, request):
-    #     bound_form = TagForm(request.POST)
-    #     if bound_form.is_valid():
-    #         new_tag = bound_form.save()
-    #         return redirect(new_tag)
-        
-    #     return render(request, 'blog/tag_create.html', context={'form': bound_form})
 
     link = 'blog/tag_create.html'
     form = TagForm
@@ -60,3 +48,18 @@ class PostCreate(ObjectCreateMixin, View):
 
     link = 'blog/post_create.html'
     form = PostForm
+
+
+class TagUpdate(ObjectUpdateMixin, View):
+    
+    link = 'blog/tag_update.html'
+    model = Tag
+    form = TagForm
+
+
+class PostUpdate(ObjectUpdateMixin, View):
+    
+    link = 'blog/post_update.html'
+    model = Post
+    form = PostForm
+    

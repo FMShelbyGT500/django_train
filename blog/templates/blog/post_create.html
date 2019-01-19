@@ -5,44 +5,33 @@
 {% endblock title %}
 
 {% block style %}
-    <style>
+  <style>
         
 		.form-control {
-            width: 60%;
-            padding-left: 30px;
-            padding-right: 30px;
-        }
-        .pretty-move-inp {
-            transition: width 1.0s ease-in-out;            
-        }
-    
-        .pretty-move-inp:focus {
-            width: 100%;
-        }
+        width: 60%;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .pretty-move-inp {
+        transition: width 1.0s ease-in-out;            
+    } 
+
+    .pretty-move-inp:focus {
+        width: 100%;
+    }
         
-    </style>
+  </style>
 {% endblock style %}
 
 {% block content %}
 
-    <form action="{% url 'post_create_url' %}" method="POST" >
-        {% csrf_token %}
+  <form action="{% url 'post_create_url' %}" method="POST" >
+      {% csrf_token %}
 
-        {% for val in form  %}
+      {% include "blog/includes/form_cu_template.html" %}
 
-            <div class="form-group">
-                <h4>{{ val.label }}</h4>
-                {{ val }}
+      <button class="btn btn-primary mb-2" type="submit">Create</button>
 
-                {% if val.errors %}
-                    <div class="alert alert-danger mt-2">{{ val.errors }}</div>            
-                {% endif %}
-            </div>
-
-        {% endfor %}
-
-        <button class="btn btn-primary mb-2" type="submit">Create</button>
-
-    </form>
+  </form>
 
 {% endblock content %}

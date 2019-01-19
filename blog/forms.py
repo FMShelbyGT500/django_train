@@ -4,17 +4,6 @@ from django.core.exceptions import ValidationError
 
 
 class TagForm(forms.ModelForm):
-    # title = forms.CharField(max_length=50)
-    # slug = forms.CharField(max_length=50)
-
-    # title.widget.attrs.update({
-    #     'class': "form-control pretty-move-inp",
-    #     'placeholder': "Enter the title"
-    # })
-    # slug.widget.attrs.update({
-    #     'class': "form-control mb-2 pretty-move-inp",
-    #     'placeholder': "Enter the slug"
-    # })
 
     class Meta:
         model = Tag

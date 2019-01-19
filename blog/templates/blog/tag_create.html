@@ -5,38 +5,29 @@
 {% endblock title %}
     
 {% block style %}
-    <style>
-        .pretty-move-inp {
-            width: 200px;
-            transition: all 1.0s ease-in-out;
-            padding-left: 30px;
-        }
-    
-        .pretty-move-inp:focus {
-            width: 100%;
-        }
-    </style>
+  <style>
+    .pretty-move-inp {
+        width: 200px;
+        transition: all 1.0s ease-in-out;
+        padding-left: 30px;
+    }
+
+    .pretty-move-inp:focus {
+        width: 100%;
+    }
+  </style>
 {% endblock style %}
 
 {% block content %}
     
-    <form action="{% url 'tag_create_url' %}" method="POST">
-        {% csrf_token %}
-        
-        {% for inp in form %}
-            <div class="form-group">
-                
-                <h4>{{ inp.label }}:</h4>
-                {{ inp }} 
-                
-                {% if inp.errors %}
-                    <div class="alert alert-danger">{{ inp.errors }}</div>                         
-                {% endif %}
-            </div>
-        {% endfor %}
-        <button class="btn btn-primary" type="submit">Create</button>      
-        
-    </form>
+  <form action="{% url 'tag_create_url' %}" method="POST">
+    {% csrf_token %}
+    
+    {% include "blog/includes/form_cu_template.html" %}
+      
+    <button class="btn btn-primary" type="submit">Create</button>      
+      
+  </form>
     
 
 {% endblock content %}
