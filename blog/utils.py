@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Post, Tag
 from .forms import PostForm, TagForm
 
@@ -18,7 +18,11 @@ class ObjectDetailMixin:
 
     def get(self, request, slug):
         obj = get_object_or_404(self.model, slug__iexact=slug)
-        return render(request, self.link, context={self.model.__name__.lower(): obj})
+        context = {self.model.__name__.lower(): obj,
+                   "detail": True,
+                   "admin_o": obj
+                   }
+        return render(request, self.link, context=context)
 
 
 class ObjectCreateMixin:
@@ -60,3 +64,20 @@ class ObjectUpdateMixin:
             return redirect(updated_obj)
 
         return render(request, self.link, context={"form": bound_form, "obj": obj})
+
+
+class ObjectDeleteMixin:
+
+    link = None
+    model = None
+    redirect_to = None
+
+    def get(self, request, slug):
+        obj = self.model.objects.get(slug__iexact=slug)
+        return render(request, self.link, context={"obj": obj})
+
+    def post(self, request, slug):
+        obj = self.model.objects.get(slug__iexact=slug)
+        obj.delete()
+        return redirect(reverse(self.redirect_to))
+

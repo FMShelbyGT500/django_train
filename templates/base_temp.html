@@ -11,9 +11,12 @@
 					Some title
         {% endblock title %}
 		</title>
+
+		
+
 		<link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.min.css">
-		<link rel="stylesheet" href="{% static 'css/base.css' %}">
-		<link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+		<link rel="shortcut icon" type="image/ico" href="{% static 'favicon.ico' %}"/>		
 
 		{% block style %}		
 		{% endblock style %}
@@ -57,13 +60,21 @@
 		</div>
 	</nav>
 		
-		<div class="row justify-content-center">
-			<div class="col-md-6">
-				{% block content %}
-					Some content
-				{% endblock content %}
-			</div>
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			{% block content %}
+				Some content
+			{% endblock content %}
 		</div>
+	</div>
 
+	<div class="admin-panel align-item-center">		
+		<div class="acts">{% block admin-panel %}{% endblock %}</div>
+		<a href="/admin" class="adm btn btn-secondary">Admin</a>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </body>
 </html>

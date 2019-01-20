@@ -1,0 +1,58 @@
+.navbar {
+    /* background-color: rgba(46, 165, 244, 1) !important; */
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0;
+    z-index: 1001;
+}
+
+div.admin-panel {
+    font-size: 22px;
+    border: 2px solid #fd6a02;
+    border-radius: 3px;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    padding: 4px;
+    opacity: 0.3;
+    max-width: 120px;
+    /* overflow: hidden; */
+}
+
+div.admin-panel:hover {
+    opacity: 1;
+}
+
+div.admin-panel a {
+    display: block;
+    margin: 10px 10px;    
+}
+
+div.admin-panel div.acts a {
+    /* display: none; */
+    padding: 5px 0;
+}
+
+div.admin-panel div.acts {
+    display: none;
+}
+
+div.admin-panel a.edit, div.admin-panel a.del{
+    display: none;
+}
+
+
+div.admin-panel:hover div.acts {
+    display: block;
+}
+
+
+
+div.admin-panel div.acts .dropdown-menu a{
+    margin: 5px 0;
+    padding: 10px;
+}
+
+div.admin-panel div.acts .dropdown-menu a:hover{
+    color: #f89406;
+}

@@ -33,19 +33,6 @@ class TagCreate(ObjectCreateMixin, View):
 
 class PostCreate(ObjectCreateMixin, View):
 
-    # def get(self, request):
-    #     form = PostForm()
-    #     return render(request, 'blog/post_create.html',~ context={'form': form})
-
-    # def post(self, request):
-    #     bound_form = PostForm(request.POST)
-        
-    #     if bound_form.is_valid():
-    #         new_post = bound_form.save()
-    #         return redirect(new_post)
-
-    #     return render(request, 'blog/post_create.html', context={'form': bound_form})
-
     link = 'blog/post_create.html'
     form = PostForm
 
@@ -63,3 +50,16 @@ class PostUpdate(ObjectUpdateMixin, View):
     model = Post
     form = PostForm
     
+
+class TagDelete(ObjectDeleteMixin, View):
+
+    link = 'blog/tag_delete.html'
+    model = Tag
+    redirect_to = 'tags_list_url'
+
+
+class PostDelete(ObjectDeleteMixin, View):
+
+    link = 'blog/post_delete.html'
+    model = Post
+    redirect_to = 'post_list_url'

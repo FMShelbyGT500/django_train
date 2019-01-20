@@ -3,7 +3,7 @@
 {% block title %}Post Update{% endblock %}
 
 {% block content %}
-<form action="{% obj.get_updated_url %}" method='POST'>
+<form action="{{ obj.get_updated_url }}" method='POST'>
   {% csrf_token %}
 
   <h1>Updating post "{{ obj.title }}"</h1>
