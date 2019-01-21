@@ -2,35 +2,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		
-    <title>
-				{% block title %}
-					Some title
-        {% endblock title %}
-		</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+  <title>
+			{% block title %}
+				Some title
+      {% endblock title %}
+	</title>		
 
-		
+	<link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="shortcut icon" type="image/ico" href="{% static 'favicon.ico' %}"/>
 
-		<link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.min.css">
-		<link rel="stylesheet" href="{% static 'css/style.css' %}">
-		<link rel="shortcut icon" type="image/ico" href="{% static 'favicon.ico' %}"/>		
+	{% block style %}		
+	{% endblock style %}
 
-		{% block style %}		
-		{% endblock style %}
-
-    <style>
-      .btn-primary {
-        background-color: #F76032;
-        border-color: chocolate;
-      }
-      .btn-primary:hover {
-        background-color: rgb(207, 54, 7);
-        border-color: chocolate;
-			}	
-    </style>
+  <style>
+    .btn-primary {
+      background-color: #F76032;
+      border-color: chocolate;
+    }
+    .btn-primary:hover {
+      background-color: rgb(207, 54, 7);
+      border-color: chocolate;
+		}	
+  </style>
 </head>
 <body>
 
@@ -44,7 +42,7 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0 navig1">
 				<li class="nav-item {% block acthome %}{% endblock acthome %}">
-					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item {% block actposts %}{% endblock actposts %}">
 					<a class="nav-link" href="{% url 'post_list_url' %}">Posts</a>
@@ -68,10 +66,12 @@
 		</div>
 	</div>
 
-	<div class="admin-panel align-item-center">		
-		<div class="acts">{% block admin-panel %}{% endblock %}</div>
-		<a href="/admin" class="adm btn btn-secondary">Admin</a>
-	</div>
+	{% if request.user.is_authenticated and request.user.is_staff %}
+    <div class="admin-panel align-item-center">		
+      <div class="acts">{% block admin-panel %}{% endblock %}</div>
+      <a href="/admin" class="adm btn btn-secondary">Admin</a>
+    </div>
+	{% endif %}
 	
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>

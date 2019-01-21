@@ -4,6 +4,7 @@ from .models import Post, Tag
 from django.views.generic import View
 from .utils import *
 from .forms import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class PostList(ObjectListMixin, View):
@@ -26,40 +27,46 @@ class TagDetail(ObjectDetailMixin, View):
     model = Tag
 
 
-class TagCreate(ObjectCreateMixin, View):
+class TagCreate(LoginRequiredMixin, ObjectCreateMixin, View):
 
     link = 'blog/tag_create.html'
     form = TagForm
+    raise_exception = True
 
-class PostCreate(ObjectCreateMixin, View):
+class PostCreate(LoginRequiredMixin, ObjectCreateMixin, View):
 
     link = 'blog/post_create.html'
     form = PostForm
+    raise_exception = True
 
 
-class TagUpdate(ObjectUpdateMixin, View):
+class TagUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     
     link = 'blog/tag_update.html'
     model = Tag
     form = TagForm
+    raise_exception = True
 
 
-class PostUpdate(ObjectUpdateMixin, View):
+class PostUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     
     link = 'blog/post_update.html'
     model = Post
     form = PostForm
+    raise_exception = True
     
 
-class TagDelete(ObjectDeleteMixin, View):
+class TagDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
 
     link = 'blog/tag_delete.html'
     model = Tag
     redirect_to = 'tags_list_url'
+    raise_exception = True
 
 
-class PostDelete(ObjectDeleteMixin, View):
+class PostDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
 
     link = 'blog/post_delete.html'
     model = Post
     redirect_to = 'post_list_url'
+    raise_exception = True
