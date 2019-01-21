@@ -12,8 +12,9 @@
       {% endblock title %}
 	</title>		
 
-	<link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.min.css">
+	<link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.min.css">	
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css">
 	<link rel="shortcut icon" type="image/ico" href="{% static 'favicon.ico' %}"/>
 
 	{% block style %}		
@@ -66,12 +67,12 @@
 		</div>
 	</div>
 
-	{% if request.user.is_authenticated and request.user.is_staff %}
-    <div class="admin-panel align-item-center">		
-      <div class="acts">{% block admin-panel %}{% endblock %}</div>
-      <a href="/admin" class="adm btn btn-secondary">Admin</a>
-    </div>
-	{% endif %}
+  <div class="admin-panel align-item-center">
+		{% if request.user.is_authenticated and request.user.is_staff %}		
+    	<div class="acts">{% block admin-panel %}{% endblock %}</div>
+		{% endif %}
+    <a href="/admin" class="adm btn btn-secondary">Admin</a>
+  </div>
 	
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>

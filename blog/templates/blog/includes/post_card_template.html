@@ -1,14 +1,14 @@
 <div class="card text-warning bg-primary" style="margin-bottom: 15px;">
-    <h6 class="card-header">{{ post.pub_date }}</h6>
-    <div class="card-body">
-        <h3 class="card-title" style="color: #c14d1f;">{{ post.title }}</h3>
-        <p class="card-text">{{ post.body|truncatewords:10 }}</p>
-        <a href="{{ post.get_absolute_url }}" class="btn btn-primary">More</a>
-    </div>
-    <div class="card-footer">
-        Tags: 
-        {% for tag in post.tags.all %}
-            <h6 style="display: inline-block"><a href="{{ tag.get_absolute_url }}" rel="noopener noreferrer">{{ tag }}/</a></h6>
-        {% endfor %}        
-    </div>
+  <h6 class="card-header">{{ post.pub_date }}</h6>
+  <div class="card-body">
+    <h3 class="card-title" style="color: #c14d1f;">{{ post.title }}</h3>
+    <p class="card-text">{{ post.body|truncatewords:10 }}</p>
+    <a href="{{ post.get_absolute_url }}" class="btn btn-primary">More</a>
+  </div>
+  <div class="card-footer">
+    Tags: 
+    {% for tag in post.tags.all %}
+        <h6 style="display: inline-block"><a href="{{ tag.get_absolute_url }}" rel="noopener noreferrer">{{ tag }}/</a></h6>
+    {% endfor %}        
+  </div>
 </div>

@@ -1,0 +1,47 @@
+<div>
+  <ul class="pagination">
+    {% if page_obj.has_previous%}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="javascript:void(0);">&laquo;</a>
+      </li>
+    {% endif %}
+
+    {% comment %} <li class="page-item active">
+      <a class="page-link" href="#">a</a>
+    </li> {% endcomment %}
+
+
+    {% for n in page_obj.paginator.page_range %}
+
+      {% if page_obj.number == n %}
+        <li class="page-item active">
+          <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+        </li>
+      {% elif n > page_obj.number|add:-3 and n < page_obj.number|add:3  %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+        </li>
+      {% comment %} {% elif n > page_obj.number|add:-4 and n < page_obj.number|add:4  %}        
+        <li class="page-item">
+          <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+        </li> {% endcomment %}
+      {% endif %}
+      
+    {% endfor %}
+
+    {% if page_obj.has_next%}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="javascript:void(0);">&raquo;</a>
+      </li>
+    {% endif %}
+
+  </ul>
+</div>

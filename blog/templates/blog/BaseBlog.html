@@ -15,4 +15,11 @@
 
 <a href="{{ admin_o.get_updated_url }}" class="btn btn-warning btn-sm edit" style="{% if detail %}display: block;{% endif %}">Update</a>
 <a href="{{ admin_o.get_deleted_url }}" class="btn btn-warning btn-sm del" style="{% if detail %}display: block;{% endif %}">Delete</a>
+
 {% endblock admin-panel %}
+
+{% block content %}
+{% if page_obj.has_other_pages %}
+  {% include 'blog/includes/pagination.html' %}
+{% endif %}
+{% endblock content %}

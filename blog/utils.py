@@ -1,14 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Post, Tag
 from .forms import PostForm, TagForm
+from django.core.paginator import Paginator
 
 
 class ObjectListMixin:
     link = None
-    model = None
+    model = None    
 
     def get(self, request):
         obj = self.model.objects.all()
+        
         return render(request, self.link, context={self.model.__name__.lower()+'s': obj})
 
 

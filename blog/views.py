@@ -7,9 +7,18 @@ from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class PostList(ObjectListMixin, View):
+class PostList(View):
     link = "blog/post_list.html"
     model = Post
+
+    def get(self, request):
+        obj = self.model.objects.all()        
+
+        paginator = Paginator(obj, 5)
+        page_number = request.GET.get('page', '1')
+        page = paginator.get_page(page_number)
+        
+        return render(request, self.link, context={"page_obj": page})
 
 
 class TagsList(ObjectListMixin, View):
