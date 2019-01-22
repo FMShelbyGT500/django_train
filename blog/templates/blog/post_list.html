@@ -12,6 +12,10 @@
     
   <h1 class="mb5 mt5">Posts</h1>
 
+  {% if was_searched %}
+  <h5>Founded <b>{{ page_obj.object_list|length }}</b> results</h5>
+  {% endif %}
+
   {{ block.super }}
   {% for post in page_obj.object_list %}
       {% include 'blog/includes/post_card_template.html' %}
