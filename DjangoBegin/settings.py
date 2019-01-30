@@ -29,7 +29,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = ['127.0.0.1', 'blog-start-django.com.herokudns.com']
-ALLOWED_HOSTS = ['127.0.0.1', 'django-learning-polls-blog.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'django-learning-polls-blog.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'tinymce',
+
     'polls.apps.PollsConfig',
-    'blog.apps.BlogConfig'
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -151,4 +153,35 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "live-static-files", "media-root")
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 260,
+    'width': 800,
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea',
+    'theme': 'modern',
+    'plugins': '''
+            textcolor save link image media preview codesample contextmenu
+            table code lists fullscreen  insertdatetime  nonbreaking
+            contextmenu directionality searchreplace wordcount visualblocks
+            visualchars code fullscreen autolink lists  charmap print  hr
+            anchor pagebreak
+            ''',
+    'toolbar1': '''
+            fullscreen preview bold italic underline | fontselect,
+            fontsizeselect  | forecolor backcolor | alignleft alignright |
+            aligncenter alignjustify | indent outdent | bullist numlist table |
+            | link image media | codesample |
+            ''',
+    'toolbar2': '''
+            visualblocks visualchars |
+            charmap hr pagebreak nonbreaking anchor |  code |
+            ''',
+    'contextmenu': 'formats | link image',
+    'menubar': True,
+    'statusbar': True,
+    'content_css': "https://bootswatch.com/4/slate/bootstrap.min.css",
+    # 'contents_style': ".form-control {width: 60%; padding-left: 30px; padding-right: 30px;} .pretty-move-inp {transition: width 1.0s ease-in-out;} .pretty-move-inp:focus {width: 100%;}"
+    }
 

@@ -1,4 +1,9 @@
 {% extends "blog/BaseBlog.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'tinymce/css/prism.css' %}">
+{% endblock style %}
 
 {% block title %}
     {{ post.title }} - {{ block.super }}
@@ -8,5 +13,9 @@
     <h1 class="mt-5">
         {{post.title}}
     </h1>
-    <p>{{post.body}}</p>
+    <p>{{post.body|safe}}</p>
 {% endblock content %}
+
+{% block js %}
+<script src="{% static 'tinymce/js/prism.js' %}"></script>
+{% endblock js %}

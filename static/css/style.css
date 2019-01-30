@@ -41,12 +41,9 @@ div.admin-panel a.edit, div.admin-panel a.del{
     display: none;
 }
 
-
 div.admin-panel:hover div.acts {
     display: block;
 }
-
-
 
 div.admin-panel div.acts .dropdown-menu a{
     margin: 5px 0;

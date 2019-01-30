@@ -2,7 +2,8 @@
   <h6 class="card-header">{{ post.pub_date }}</h6>
   <div class="card-body">
     <h3 class="card-title" style="color: #c14d1f;">{{ post.title }}</h3>
-    <p class="card-text">{{ post.body|truncatewords:10 }}</p>
+    <p>{{ post.body|safe|truncatewords:10 }}</p>
+    {% comment %} <p class="card-text">{{ post.body|truncatewords:10 }}</p> {% endcomment %}
     <a href="{{ post.get_absolute_url }}" class="btn btn-primary">More</a>
   </div>
   <div class="card-footer">

@@ -20,7 +20,7 @@
 
 {% block content %}
     
-  <form action="{% url 'tag_create_url' %}" method="POST">
+  <form action="{% url 'blog:tag_create_url' %}" method="POST">
     {% csrf_token %}
     
     {% include "blog/includes/form_cu_template.html" %}

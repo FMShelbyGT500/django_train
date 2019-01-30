@@ -1,3 +1,5 @@
+{% extends 'polls/base_polls.html' %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,22 +7,45 @@
     <title>Detail</title>
 </head>
 <body>
-
+    
+    {% block content %}
     <h1>{{ question.question_text }}</h1>
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-    <form action="{% url 'polls:vote' question.id %}" method="post">
+    <form action="{% url 'polls:vote_url' question.id %}" method="post">
     {% csrf_token %}
-    {% for choice in question.choice_set.all %}
-        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br /><br />
-    {% endfor %}
 
-    <p>Name: </p><label><input type="text" name="name" /></label><br /><br />
-    <label><input type="text" name="test" /></label><br /><br />
-    <input type="submit" value="Голосоватб" /><br /><br />
+        <div class="form-group"> 
+
+            {% for choice in question.choice_set.all %}
+                <div class="custom-control custom-radio">
+                    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" class="custom-control-input text-lg"/>
+                    <label class="custom-control-label" for="choice{{ forloop.counter }}" style="font-size: 17px;">{{ choice.choice_text }}</label><br/><br/>
+                </div>
+            {% endfor %}
+
+            <hr/>
+            
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Name <span style="color:red;">*</span></span>
+                </div>
+                <input type="text" class="form-control" aria-label="name" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">E-mail <span style="color:red;">*</span></span>
+                </div>
+                <input type="email" class="form-control" aria-label="email" required>
+            </div>
+
+            <input class="btn btn-warning form-control" type="submit" value="Голосоватб" style="color: black;"/>
+        </div>
+    </div>
     </form>
+    {% endblock content %}
 
 </body>
 </html>

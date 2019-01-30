@@ -1,5 +1,17 @@
 {% extends "base_temp.html" %}
 
+{% block nav-links %}
+<li class="nav-item {% block acthome %}{% endblock acthome %}">
+	<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item {% block actposts %}{% endblock actposts %}">
+	<a class="nav-link" href="{% url 'blog:post_list_url' %}">Posts</a>
+</li>
+<li class="nav-item {% block acttags %}{% endblock acttags %}">
+	<a class="nav-link" href="{% url 'blog:tags_list_url' %}">Tags</a>
+</li>
+{% endblock nav-links %}
+
 {% block admin-panel %}
 {% comment %} <a href="#" class="badge badge-warning">Create</a> {% endcomment %}
 <div class="dropdown dropleft">
@@ -8,14 +20,13 @@
   </a>
 
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="z-index: 1001; position: absolute;">
-    <a class="dropdown-item" href="{% url 'tag_create_url' %}">Tag</a>
-    <a class="dropdown-item" href="{% url 'post_create_url' %}">Post</a>
+    <a class="dropdown-item" href="{% url 'blog:tag_create_url' %}">Tag</a>
+    <a class="dropdown-item" href="{% url 'blog:post_create_url' %}">Post</a>
   </div>
 </div>
 
 <a href="{{ admin_o.get_updated_url }}" class="btn btn-warning btn-sm edit" style="{% if detail %}display: block;{% endif %}">Update</a>
 <a href="{{ admin_o.get_deleted_url }}" class="btn btn-warning btn-sm del" style="{% if detail %}display: block;{% endif %}">Delete</a>
-
 {% endblock admin-panel %}
 
 {% block content %}

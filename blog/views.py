@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Post, Tag
 from django.views.generic import View
 from .utils import *
@@ -94,7 +94,7 @@ class TagDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
 
     link = 'blog/tag_delete.html'
     model = Tag
-    redirect_to = 'tags_list_url'
+    redirect_to = 'blog:tags_list_url'
 
     raise_exception = True
 
@@ -103,6 +103,6 @@ class PostDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
 
     link = 'blog/post_delete.html'
     model = Post
-    redirect_to = 'post_list_url'
+    redirect_to = 'blog:post_list_url'
 
     raise_exception = True

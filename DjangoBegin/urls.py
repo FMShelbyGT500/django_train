@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import redirect_to_blog
+from . import views
 
 urlpatterns = [
-    path('', redirect_to_blog),
+    path('', views.home, name='home_url'),
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
     path('blog/', include('blog.urls')),
+    path('tinymce/', include('tinymce.urls')),
 ]

@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import reverse
 from django.utils.text import slugify
 from time import time
+# from tinymce import HTMLField
 
 
 def generate_slug(s):
@@ -10,18 +11,19 @@ def generate_slug(s):
 class Post(models.Model):
     title = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=50, unique=True, blank=True)
+    # body = HTMLField("Body")
     body = models.TextField(blank=True, db_index=True)
     tags = models.ManyToManyField("Tag", blank=True, related_name='posts')
     pub_date = models.DateField(auto_now_add=True)
 
     def get_absolute_url(self):
-        return reverse("post_detail_url", kwargs={"slug": self.slug})
+        return reverse("blog:post_detail_url", kwargs={"slug": self.slug})
 
     def get_updated_url(self):
-        return reverse("post_update_url", kwargs={"slug": self.slug})
+        return reverse("blog:post_update_url", kwargs={"slug": self.slug})
 
     def get_deleted_url(self):
-        return reverse("post_delete_url", kwargs={"slug": self.slug})
+        return reverse("blog:post_delete_url", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -41,13 +43,13 @@ class Tag(models.Model):
     slug = models.SlugField(max_length=50, unique=True)
     
     def get_absolute_url(self):
-        return reverse("tag_detail_url", kwargs={"slug": self.slug})    
+        return reverse("blog:tag_detail_url", kwargs={"slug": self.slug})    
 
     def get_updated_url(self):
-        return reverse("tag_update_url", kwargs={"slug": self.slug})
+        return reverse("blog:tag_update_url", kwargs={"slug": self.slug})
 
     def get_deleted_url(self):
-        return reverse("tag_delete_url", kwargs={"slug": self.slug})
+        return reverse("blog:tag_delete_url", kwargs={"slug": self.slug})
 
     def __str__(self):
         return self.title

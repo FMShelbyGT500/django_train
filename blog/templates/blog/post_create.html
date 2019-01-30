@@ -7,7 +7,7 @@
 {% block style %}
   <style>
         
-		.form-control {
+	.form-control {
         width: 60%;
         padding-left: 30px;
         padding-right: 30px;
@@ -25,7 +25,7 @@
 
 {% block content %}
 
-  <form action="{% url 'post_create_url' %}" method="POST" >
+  <form action="{% url 'blog:post_create_url' %}" method="POST" >
       {% csrf_token %}
 
       {% include "blog/includes/form_cu_template.html" %}
